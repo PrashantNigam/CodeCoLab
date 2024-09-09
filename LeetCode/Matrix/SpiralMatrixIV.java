@@ -22,11 +22,14 @@ public class SpiralMatrixIV {
         var node = new ListNode[]{head};
         var matrix = new int[m][n];
 
-        while (firstRow <= lastRow && firstCol <= lastCol) {
+        while (true) {
+            if (crossOver(firstRow, lastRow, firstCol, lastCol))
+                break;
+
             firstRow = fillFirstRow(firstCol, lastCol, matrix, firstRow, node);
             lastCol = fillLastColumn(firstRow, lastRow, matrix, lastCol, node);
 
-            if (firstRow > lastRow || firstCol > lastCol)
+            if (crossOver(firstRow, lastRow, firstCol, lastCol))
                 break;
 
             lastRow = fillLastRow(lastCol, firstCol, matrix, lastRow, node);
@@ -34,6 +37,10 @@ public class SpiralMatrixIV {
         }
 
         return matrix;
+    }
+
+    private boolean crossOver(int firstRow, int lastRow, int firstCol, int lastCol) {
+        return firstRow > lastRow || firstCol > lastCol;
     }
 
     private int fillFirstRow(int firstCol, int lastCol, int[][] matrix, int firstRow, ListNode[] node) {
