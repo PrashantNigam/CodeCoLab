@@ -125,7 +125,7 @@ public class CountTheNumberOfConsistentStrings {
         var letters = 0;
 
         for (var i = 0; i < s.length(); i++)
-            letters = letters | HIGH_BITS[s.charAt(i) - 'a'];
+            letters |= HIGH_BITS[s.charAt(i) - 'a'];
 
         return letters;
     }
