@@ -14,7 +14,7 @@ public class XORQueriesOfASubarray {
 
     public int[] xorQueries(int[] arr, int[][] queries) {
         var prefixXOR = arr.clone();
-        Arrays.parallelPrefix(prefixXOR, (a, b) -> a ^ b);
+        Arrays.parallelPrefix(prefixXOR, this::xor);
 
         return Arrays.stream(queries)
                      .mapToInt(query -> rangeXOR(prefixXOR, query))
@@ -27,6 +27,10 @@ public class XORQueriesOfASubarray {
 
         return left == 0
              ? prefixXOR[right]
-             : prefixXOR[right] ^ prefixXOR[left - 1];
+             : xor(prefixXOR[right], prefixXOR[left - 1]);
+    }
+
+    private int xor(int a, int b) {
+        return a ^ b;
     }
 }
