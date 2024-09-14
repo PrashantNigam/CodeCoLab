@@ -14,13 +14,13 @@ public class LongestSubarrayWithMaximumBitwiseAND {
                         .max()
                         .getAsInt();
 
-        return lengthOfLongestSubsequentOccurencesOfItem(nums, max);
+        return lengthOfLongestConsecutiveOccurrencesOfItem(nums, max);
     }
 
-    private static int lengthOfLongestSubsequentOccurencesOfItem(int[] nums, int item) {
+    private int lengthOfLongestConsecutiveOccurrencesOfItem(int[] nums, int item) {
         var size = 0;
         var maxSize = 0;
-        
+
         for (var num : nums)
             if (num == item) {
                 size++;
