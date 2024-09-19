@@ -31,10 +31,10 @@ public class DifferentWaysToAddParentheses {
 
         var values = new ArrayList<Integer>();
 
-        if (containsOperator(expression))
-            splitExpression(expression, values, memo);
-        else
+        if (isNumeric(expression))
             values.add(Integer.parseInt(expression));
+        else
+            splitExpression(expression, values, memo);
 
         return memo.compute(expression, (_, _) -> values);
     }
@@ -50,16 +50,18 @@ public class DifferentWaysToAddParentheses {
 
             var leftParts = diffWaysToCompute(expression.substring(0, i), memo);
             var rightParts = diffWaysToCompute(expression.substring(i + 1), memo);
-            evaluateExpression(values, leftParts, rightParts, OPERATIONS.get(ch));
+            evaluateExpression(values, leftParts, rightParts, ch);
         }
     }
 
-    private boolean containsOperator(String s) {
-        return IntStream.range(0, s.length())
-                        .anyMatch(i -> OPERATIONS.containsKey(s.charAt(i)));
+    private boolean isNumeric(String s) {
+        return s.chars()
+                .allMatch(Character::isDigit);
     }
 
-    private void evaluateExpression(List<Integer> values, List<Integer> leftParts, List<Integer> rightParts, BiFunction<Integer, Integer, Integer> operation) {
+    private void evaluateExpression(List<Integer> values, List<Integer> leftParts, List<Integer> rightParts, char operator) {
+        var operation = OPERATIONS.get(operator);
+
         for (var left : leftParts)
             for (var right : rightParts)
                 values.add(operation.apply(left, right));
