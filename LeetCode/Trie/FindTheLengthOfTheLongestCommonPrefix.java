@@ -9,7 +9,7 @@ public class FindTheLengthOfTheLongestCommonPrefix {
         var ob = new FindTheLengthOfTheLongestCommonPrefix();
         System.out.println(ob.longestCommonPrefix(new int[]{1, 10, 100}, new int[]{1000}) == 3);
         System.out.println(ob.longestCommonPrefix(new int[]{1, 2, 3}, new int[]{4, 4, 4}) == 0);
-        System.out.println(ob.longestCommonPrefix(new int[]{1, 3}, new int[]{32, 22}));
+        System.out.println(ob.longestCommonPrefix(new int[]{1, 3}, new int[]{32, 22}) == 1);
     }
 
     public int longestCommonPrefix(int[] arr1, int[] arr2) {
