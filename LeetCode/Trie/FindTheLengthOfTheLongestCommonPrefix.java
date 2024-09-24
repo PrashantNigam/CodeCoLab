@@ -22,7 +22,7 @@ public class FindTheLengthOfTheLongestCommonPrefix {
         return maxPrefixLength;
     }
 
-    private static class Trie {
+    public static class Trie {
         private final TrieNode root = new TrieNode();
 
         public Trie(int[] arr1) {
@@ -38,7 +38,7 @@ public class FindTheLengthOfTheLongestCommonPrefix {
                 node = node.children.computeIfAbsent(newNode.charAt(i), _ -> new TrieNode());
         }
 
-        private int longestPrefixLength(int val) {
+        public int longestPrefixLength(int val) {
             var length = 0;
             var node = root;
             var query = Integer.toString(val);
@@ -56,7 +56,7 @@ public class FindTheLengthOfTheLongestCommonPrefix {
             return length;
         }
 
-        private static class TrieNode {
+        public static class TrieNode {
             private final Map<Character, TrieNode> children = new HashMap<>();
         }
     }
