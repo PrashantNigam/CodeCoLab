@@ -23,11 +23,11 @@ public class FindTheLengthOfTheLongestCommonPrefix {
     }
 
     public static class Trie {
-        private final TrieNode root = new TrieNode();
+        private record TrieNode(Map<Character, TrieNode> children) {}
+        private final TrieNode root = new TrieNode(new HashMap<>());
 
         public Trie(int[] arr1) {
-            Arrays.stream(arr1)
-                  .forEach(this::insert);
+            Arrays.stream(arr1).forEach(this::insert);
         }
 
         public void insert(int val) {
@@ -35,7 +35,7 @@ public class FindTheLengthOfTheLongestCommonPrefix {
             var newNode = Integer.toString(val);
 
             for (var i = 0; i < newNode.length(); i++)
-                node = node.children.computeIfAbsent(newNode.charAt(i), _ -> new TrieNode());
+                node = node.children.computeIfAbsent(newNode.charAt(i), _ -> new TrieNode(new HashMap<>()));
         }
 
         public int longestPrefixLength(int val) {
@@ -54,10 +54,6 @@ public class FindTheLengthOfTheLongestCommonPrefix {
             }
 
             return length;
-        }
-
-        public static class TrieNode {
-            private final Map<Character, TrieNode> children = new HashMap<>();
         }
     }
 }
