@@ -16,11 +16,6 @@ public class MyCalendarI {
         private final NavigableMap<Integer, Integer> startToEnd = new TreeMap<>();
 
         /**
-         * Initializes the calendar object.
-         */
-        public MyCalendar() {}
-
-        /**
          * @param start start of event (inclusive)
          * @param end   end of event (exclusive)
          * @return true if the event can be added to the calendar successfully without causing a double booking.
