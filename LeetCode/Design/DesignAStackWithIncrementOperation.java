@@ -1,5 +1,7 @@
 package Design;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +23,66 @@ public class DesignAStackWithIncrementOperation {
         System.out.println(ob.pop() == -1);
     }
 
-    static class CustomStack {
+    // Lazy Propagation
+    public static class CustomStack {
+
+        private final int maxSize;
+        private final int[] increments;
+        private final Deque<Integer> stack = new ArrayDeque<>();        
+
+        public CustomStack(int maxSize) {
+            this.maxSize = maxSize;
+            this.increments = new int[maxSize];
+        }
+
+        /**
+         * Adds x to the top of the stack if the stack hasn't reached the maxSize.
+         *
+         * @param x int to push to stack
+         */
+        public void push(int x) {
+            if (stack.size() == maxSize)
+                return;
+
+            stack.push(x);
+        }
+
+        /**
+         * Pops the top element from the stack, applying any pending increments (Lazy Propagation)
+         *
+         * @return The popped element's value, or -1 if the stack is empty.
+         */
+        public int pop() {
+            if (stack.isEmpty())
+                return -1;
+
+            var last = stack.size() - 1;
+            var incrementedVal = stack.pop() + increments[last];
+
+            if (!stack.isEmpty())
+                increments[last - 1] += increments[last];
+
+            increments[last] = 0;
+            return incrementedVal;
+        }
+
+        /**
+         * Increments the top of stack by val
+         *
+         * @param k   number of stack entries to increment
+         * @param val stack entries increment value
+         */
+        public void increment(int k, int val) {
+            if (stack.isEmpty())
+                return;
+
+            var last = Math.min(k, stack.size()) - 1;
+            increments[last] += val;
+        }
+    }
+
+    // Brute Force
+    public static class CustomStack2 {
 
         private final int maxSize;
         private final List<Integer> stack = new LinkedList<>();
@@ -31,7 +92,7 @@ public class DesignAStackWithIncrementOperation {
          *
          * @param maxSize maximum number of elements in the stack.
          */
-        public CustomStack(int maxSize) {
+        public CustomStack2(int maxSize) {
             this.maxSize = maxSize;
         }
 
@@ -43,6 +104,7 @@ public class DesignAStackWithIncrementOperation {
         public void push(int x) {
             if (stack.size() == maxSize)
                 return;
+            
             stack.add(x);
         }
 
@@ -52,9 +114,7 @@ public class DesignAStackWithIncrementOperation {
          * @return returns the top of stack or -1 if the stack is empty.
          */
         public int pop() {
-            return stack.isEmpty() 
-                 ? -1 
-                 : stack.removeLast();
+            return stack.isEmpty() ? -1 : stack.removeLast();
         }
 
         /**
