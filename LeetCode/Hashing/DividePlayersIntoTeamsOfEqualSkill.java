@@ -14,11 +14,9 @@ public class DividePlayersIntoTeamsOfEqualSkill {
     public long dividePlayers(int[] skills) {
         var skillCount = new HashMap<Integer, Integer>();
         var teamSkill = getTeamSkill(skills, skillCount);
-
-        if (teamSkill == -1)
-            return -1;
-
-        return getSumOfChemistry(skills, skillCount, teamSkill);
+        return teamSkill == -1
+             ? -1
+             : getSumOfChemistry(skills, skillCount, teamSkill);
     }
 
     /**
