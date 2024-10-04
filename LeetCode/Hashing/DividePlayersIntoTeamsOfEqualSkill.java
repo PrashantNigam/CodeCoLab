@@ -40,7 +40,7 @@ public class DividePlayersIntoTeamsOfEqualSkill {
              : -1;
     }
 
-    private long getSumOfChemistry(int[] skills, HashMap<Integer, Integer> skillCount, int teamSkill) {
+    private long getSumOfChemistry(int[] skills, Map<Integer, Integer> skillCount, int teamSkill) {
         var sumOfChemistry = 0L;
 
         for (var skill : skills) {
