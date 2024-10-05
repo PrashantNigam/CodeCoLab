@@ -32,12 +32,10 @@ public class PermutationInString {
         var left = 0;        
 
         for (var right = m; right < n; right++) {
+            
             var leftChar = text.charAt(left++) - 'a';
             var rightChar = text.charAt(right) - 'a';
-
-            if (tHash[leftChar] > 0)
-                tHash[leftChar]--;
-
+            tHash[leftChar] = Math.max(tHash[leftChar] - 1, 0);
             tHash[rightChar]++;
 
             if (Arrays.equals(pHash, tHash))
