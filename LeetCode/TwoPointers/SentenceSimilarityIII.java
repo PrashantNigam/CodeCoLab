@@ -33,7 +33,7 @@ public class SentenceSimilarityIII {
         }
 
         return left1 - right1 == 1
-                || left2 - right2 == 1;
+            || left2 - right2 == 1;
     }
 
     public boolean areSentencesSimilar2(String sentence1, String sentence2) {
