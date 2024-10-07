@@ -14,6 +14,20 @@ public class MinimumStringLengthAfterRemovingSubstrings {
     private static final String[] REPLACEABLE = {"AB", "CD"};
 
     public int minLength(String s) {
+    	var stack = new ArrayDeque<Character>();
+    
+    	for (var ch : s.toCharArray())
+    		if (!stack.isEmpty() && stack.peek() == 'A' && ch == 'B' 
+    		 || !stack.isEmpty() && stack.peek() == 'C' && ch == 'D')
+    			stack.pop();
+    		else
+    			stack.push(ch);
+    
+    	return stack.size();
+    }
+
+    // More extensible way
+    public int minLength2(String s) {
         var stack = new ArrayDeque<Character>();
 
         for (var ch : s.toCharArray())
