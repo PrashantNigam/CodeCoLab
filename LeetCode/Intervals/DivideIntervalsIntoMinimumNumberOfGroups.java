@@ -1,4 +1,4 @@
-package LineSweep;
+package Intervals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
