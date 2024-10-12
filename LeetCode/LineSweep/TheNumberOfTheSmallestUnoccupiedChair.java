@@ -66,12 +66,12 @@ public class TheNumberOfTheSmallestUnoccupiedChair {
         while (!entries.isEmpty()) {
             var entry = entries.poll();
 
+            if (entry.index == targetFriend)
+                return chairs.poll();
             if (entry.isArrival)
                 friendToChair.put(entry.index, chairs.poll());
             else
-                chairs.add(friendToChair.remove(entry.index));
-            if (entry.index == targetFriend)
-                return friendToChair.get(entry.index);
+                chairs.add(friendToChair.remove(entry.index));            
         }
 
         return 0;
