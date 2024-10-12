@@ -39,11 +39,11 @@ public class DivideIntervalsIntoMinimumNumberOfGroups {
 
         for (var interval : intervals) {
             points.add(new Point(interval[0], true));
-            points.add(new Point(interval[1] + 1, false));
+            points.add(new Point(interval[1], false));
         }
 
         points.sort(Comparator.comparing((Point point) -> point.val)
-                              .thenComparing(point -> point.isStart));
+                              .thenComparing(point -> !point.isStart));
         return points;
     }
 }
