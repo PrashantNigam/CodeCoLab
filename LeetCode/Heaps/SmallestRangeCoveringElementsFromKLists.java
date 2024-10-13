@@ -51,7 +51,7 @@ public class SmallestRangeCoveringElementsFromKLists {
     }
 
     private int seedMinHeapWithFirstElementsAndReturnMax(List<List<Integer>> nums, Queue<Item> minHeap) {
-        var max = Integer.MIN_VALUE;
+        var max = MIN_VALUE;
 
         for (var i = 0; i < nums.size(); i++) {
             var first = nums.get(i).getFirst();
