@@ -26,7 +26,7 @@ public class SmallestRangeCoveringElementsFromKLists {
 
     public int[] smallestRange(List<List<Integer>> nums) {
         var minHeap = new PriorityQueue<Item>(Comparator.comparing(item -> item.value));
-        var max = getMinHeap(nums, minHeap);
+        var max = seedMinHeapWithFirstElementsAndReturnMax(nums, minHeap);
         var minRangeLow = MIN_VALUE;
         var minRangeHigh = MAX_VALUE;
 
@@ -50,7 +50,7 @@ public class SmallestRangeCoveringElementsFromKLists {
         return new int[]{minRangeLow, minRangeHigh};
     }
 
-    private int getMinHeap(List<List<Integer>> nums, Queue<Item> minHeap) {
+    private int seedMinHeapWithFirstElementsAndReturnMax(List<List<Integer>> nums, Queue<Item> minHeap) {
         var max = Integer.MIN_VALUE;
 
         for (var i = 0; i < nums.size(); i++) {
