@@ -13,11 +13,11 @@ public class SeparateBlackAndWhiteBalls {
     // Similar to LC 75. Sort Colors
     public long minimumSteps(String s) {
         var swaps = 0L;
-        var nextBlack = 0;
+        var nextWhite = 0;
 
         for (var i = 0; i < s.length(); i++)
             if (s.charAt(i) == '0')
-                swaps += i - nextBlack++;
+                swaps += i - nextWhite++;
 
         return swaps;
     }
