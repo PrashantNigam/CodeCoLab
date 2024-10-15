@@ -9,7 +9,6 @@ public class SeparateBlackAndWhiteBalls {
         System.out.println(ob.minimumSteps("0111") == 0);
     }
 
-
     // Similar to LC 75. Sort Colors
     public long minimumSteps(String s) {
         var swaps = 0L;
