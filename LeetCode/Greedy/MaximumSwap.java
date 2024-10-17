@@ -19,13 +19,14 @@ public class MaximumSwap {
      * * If this digit is to the right of d, then swap and exit
      * * Else if no match is found, then num is already maxed out
      * * The array created will of length O(log num)
+     * * The inner loop runs in O(1) time
      */
     public int maximumSwap(int num) {
         var arr = String.valueOf(num).toCharArray();
         var digitToLastIndex = buildMap(arr);
 
         for (var i = 0; i < arr.length; i++) {
-            var maxNumber = getMaxNumber(Character.getNumericValue(arr[i]), digitToLastIndex, i, arr);
+            var maxNumber = getMaxNumber(arr, i, digitToLastIndex);
 
             if (maxNumber != -1)
                 return maxNumber;
@@ -43,13 +44,16 @@ public class MaximumSwap {
         return digitToLastIndex;
     }
 
-    // O(1) time
-    private int getMaxNumber(int digit, Map<Integer, Integer> digitToLastIndex, int i, char[] arr) {
+    private int getMaxNumber(char[] arr, int digitIndex, Map<Integer, Integer> digitToLastIndex) {
+        var digit = Character.getNumericValue(arr[digitIndex]);
+
         for (var d = 9; d > digit; d--) {
-            if (digitToLastIndex.getOrDefault(d, 0) <= i)
+            var lastIndex = digitToLastIndex.getOrDefault(d, 0);
+
+            if (lastIndex <= digitIndex)
                 continue;
 
-            swap(arr, i, digitToLastIndex.get(d));
+            swap(arr, digitIndex, lastIndex);
             return Integer.parseInt(new String(arr));
         }
 
