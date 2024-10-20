@@ -37,10 +37,13 @@ public class ParsingABooleanExpression {
         return stack.poll() == TRUE;
     }
 
+    /**
+     * @param stack a non-empty stack that may contain operands, operators and closing brackets
+     */
     private void processSubexpression(Deque<Character> stack) {
         var letters = new HashSet<Character>();
 
-        while (stack.peek() != '(')
+        while (stack.peek() != '(') 
             letters.add(stack.pop());
 
         stack.pop();
@@ -52,7 +55,7 @@ public class ParsingABooleanExpression {
             case AND -> letters.contains(FALSE) ? FALSE : TRUE;
             case NOT -> letters.contains(TRUE) ? FALSE : TRUE;
             case OR -> letters.contains(TRUE) ? TRUE : FALSE;
-            default -> 0;
+            default -> 0; // impossible case, but compiler requires it
         };
     }
 }
