@@ -38,7 +38,7 @@ public class ParsingABooleanExpression {
     }
 
     /**
-     * @param stack a non-empty stack that may contain operands, operators and closing brackets
+     * @param stack a non-empty stack that may contain operands, operators and opening brackets
      */
     private void processSubexpression(Deque<Character> stack) {
         var letters = new HashSet<Character>();
