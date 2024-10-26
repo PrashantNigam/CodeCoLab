@@ -14,7 +14,6 @@ public class FlipEquivalentBinaryTrees {
         System.out.println(!ob.flipEquiv(deserializeLC("[]"), deserializeLC("[1]")));
     }
 
-    // DFS
     public boolean flipEquiv(TreeNode root1, TreeNode root2) {
         var q = new LinkedList<>(Arrays.asList(root1, root2));
 
