@@ -16,7 +16,7 @@ public class CountSquareSubmatricesWithAllOnes {
         var m = matrix.length;
         var n = matrix[0].length;
         var dp = new int[m][n];
-        var count = zerofyFirstRow(matrix, m, dp) + zerofyFirstColumn(matrix, n, dp);
+        var count = fillFirstRow(matrix, m, dp) + fillFirstColumn(matrix, n, dp);
 
         if (matrix[0][0] == 1)
             count--; // double count adjustment
@@ -35,7 +35,7 @@ public class CountSquareSubmatricesWithAllOnes {
         return count;
     }
 
-    private int zerofyFirstRow(int[][] matrix, int m, int[][] allOnes) {
+    private int fillFirstRow(int[][] matrix, int m, int[][] allOnes) {
         var ones = 0;
 
         for (var i = 0; i < m; i++) {
@@ -49,7 +49,7 @@ public class CountSquareSubmatricesWithAllOnes {
         return ones;
     }
 
-    private int zerofyFirstColumn(int[][] matrix, int n, int[][] allOnes) {
+    private int fillFirstColumn(int[][] matrix, int n, int[][] allOnes) {
         var ones = 0;
 
         for (var j = 0; j < n; j++) {
