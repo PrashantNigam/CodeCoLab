@@ -19,6 +19,14 @@ public class MinimumNumberOfChangesToMakeBinaryStringBeautiful {
         return changes;
     }
 
+     /**
+     * Iterate over s
+     * If adjacent characters are same, continue iterating
+     * Else if the string size seen yet is even then no flips need to be made, but the string resets here 
+     * (i.e. a partition has to be made at current index - 1) and size becomes 1 for the string thus starting
+     * Else if the string size seen yet is odd, then this bit must be flipped and the string ends here and a new one 
+     * starts at current index + 1 with size = 0
+     */
     public int minChanges2(String s) {
         var size = 0;
         var changes = 0;
