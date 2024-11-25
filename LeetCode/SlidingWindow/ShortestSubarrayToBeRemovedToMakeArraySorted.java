@@ -1,4 +1,4 @@
-package Topics.SlidingWindow;
+package SlidingWindow;
 
 // Amazon
 public class ShortestSubarrayToBeRemovedToMakeArraySorted {
