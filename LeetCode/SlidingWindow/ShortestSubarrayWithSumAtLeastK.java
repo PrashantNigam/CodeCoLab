@@ -1,6 +1,7 @@
 package SlidingWindow;
 
 import java.util.ArrayDeque;
+import java.util.List;
 
 // Amazon Facebook GoldmanSachs Google
 public class ShortestSubarrayWithSumAtLeastK {
@@ -17,17 +18,19 @@ public class ShortestSubarrayWithSumAtLeastK {
      */
     public int shortestSubarray(int[] nums, int k) {
         var minLength = Integer.MAX_VALUE;
-        var dq = new ArrayDeque<Integer>();
         var prefixSum = getPrefixSum(nums);
+        var dq = new ArrayDeque<>(List.of(0));
 
-        for (var i = 0; i < prefixSum.length; i++) {
-            
+        for (var i = 1; i < prefixSum.length; i++) {
+
+            // shrink window from left till subarray sum >= k
             while (!dq.isEmpty() && prefixSum[i] - prefixSum[dq.peekFirst()] >= k)
                 minLength = Math.min(minLength, i - dq.pollFirst());
-            
-            while (!dq.isEmpty() && prefixSum[i] <= prefixSum[dq.peekLast()])
+
+            // maintain monotonic nature of the deque
+            while (!dq.isEmpty() && prefixSum[dq.peekLast()] >= prefixSum[i])
                 dq.pollLast();
-            
+
             dq.addLast(i);
         }
 
@@ -39,7 +42,7 @@ public class ShortestSubarrayWithSumAtLeastK {
 
         for (var i = 1; i < prefixSum.length; i++)
             prefixSum[i] = prefixSum[i - 1] + nums[i - 1];
-        
+
         return prefixSum;
     }
 }
