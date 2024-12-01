@@ -27,7 +27,7 @@ public class CountUnguardedCellsInTheGrid {
     }
 
     private void dfs(int i, int j, int m, int n, char[][] grid, int[] guarded, int[] dir) {
-        if (i == -1 || j == -1 || i == m || j == n || grid[i][j] == 'W' || grid[i][j] == 'G')
+        if (i == -1 || j == -1 || i == m || j == n || grid[i][j] == WALL || grid[i][j] == GUARD)
             return;
 
         if (grid[i][j] != GUARDED) {
