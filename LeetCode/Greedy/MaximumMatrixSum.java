@@ -1,4 +1,4 @@
-package Matrix;
+package Greedy;
 
 public class MaximumMatrixSum {
     public static void main(String[] args) {
