@@ -1,4 +1,4 @@
-package SlidingWindow;
+package SlidingWindow;.VariableSize
 
 import java.util.stream.IntStream;
 
