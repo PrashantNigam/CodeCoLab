@@ -50,7 +50,7 @@ public class MinimumTimeToVisitACellInAGrid {
                 var nextTime = 0;
                 var diff = grid[x][y] - node.time;
 
-                if (grid[x][y] <= node.time + 1)
+                if (diff < 2)
                     nextTime = node.time + 1;
                 else if ((diff & 1) == 0)
                     nextTime = grid[x][y] + 1;
