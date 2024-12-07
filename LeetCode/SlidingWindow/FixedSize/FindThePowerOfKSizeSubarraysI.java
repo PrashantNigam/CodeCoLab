@@ -1,4 +1,4 @@
-package SlidingWindow;
+package SlidingWindow.FixedSize;
 
 import java.util.Arrays;
 
