@@ -1,4 +1,4 @@
-package Graphs;
+package Graphs.Eulerian;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
