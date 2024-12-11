@@ -19,10 +19,12 @@ public class MaximumNumberOfIntegersToChooseFromARangeI {
                             .collect(Collectors.toCollection(HashSet::new));
 
         for (var i = 1; i <= n; i++) {
-            var nextSum = sum + i;
-
-            if (blocked.contains(i) || nextSum > maxSum)
+            if (blocked.contains(i))
                 continue;
+
+            var nextSum = sum + i;
+            if (nextSum > maxSum)
+                break;
 
             sum = nextSum;
             count++;
