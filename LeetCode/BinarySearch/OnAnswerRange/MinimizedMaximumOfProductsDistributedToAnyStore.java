@@ -1,4 +1,4 @@
-package BinarySearch;
+package BinarySearch.OnAnswerRange;
 
 public class MinimizedMaximumOfProductsDistributedToAnyStore {
     public static void main(String[] args) {
